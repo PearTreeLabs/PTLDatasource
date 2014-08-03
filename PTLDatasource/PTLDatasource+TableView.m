@@ -135,18 +135,22 @@ static NSString * const kPTLTableViewDatasourceFooterIdentifier = @"kPTLTableVie
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-   if (self.tableViewCanEditRowBlock) {
-      id item = [self itemAtIndexPath:indexPath];
-      return self.tableViewCanEditRowBlock(tableView, item, indexPath);
-   }
-   return NO;
+    PTLTableViewCanEditRowBlock block = [self tableViewCanEditRowBlockForIndexPath:indexPath];
+    if (block) {
+        id item = [self itemAtIndexPath:indexPath];
+        // FIXME: If this block is from a sub-datasource in a composite datasource, then indexPath may be incorrect for the datasource providing the block.
+        return block(tableView, item, indexPath);
+    }
+    return NO;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-   if (self.tableViewCommitEditingStyleBlock) {
-      id item = [self itemAtIndexPath:indexPath];
-      self.tableViewCommitEditingStyleBlock(tableView, editingStyle, item, indexPath);
-   }
+    PTLTableViewCommitEditingStyleBlock block = [self tableViewCommitEditingStyleBlockForIndexPath:indexPath];
+    if (block) {
+        id item = [self itemAtIndexPath:indexPath];
+        // FIXME: If this block is from a sub-datasource in a composite datasource, then indexPath may be incorrect for the datasource providing the block.
+        block(tableView, editingStyle, item, indexPath);
+    }
 }
 
 @end

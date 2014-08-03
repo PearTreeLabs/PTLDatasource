@@ -51,7 +51,7 @@ static NSString * const kCellId = @"Cell";
         [datasources addObject:datasource];
     }
     self.compositedDatasources = datasources;
-    PTLDatasource *composite = [[PTLCompositeDatasource alloc] initWithWithDatasources:datasources];
+    PTLCompositeDatasource *composite = [[PTLCompositeDatasource alloc] initWithWithDatasources:datasources];
     composite.tableViewCellIdentifier = kCellId;
     composite.tableViewCellConfigBlock = ^(UITableView *tableView, UITableViewCell *cell, id item, NSIndexPath *indexPath){
         cell.textLabel.text = item;
@@ -59,6 +59,17 @@ static NSString * const kCellId = @"Cell";
     self.datasource = composite;
     self.tableView.dataSource = composite;
     self.mainTableViewManager = [[PTLTableViewUpdateManager alloc] initWithTableView:self.tableView];
+    
+    // Enable swipe-to-delete from heroes datasource
+    __weak PTLArrayDatasource *heroes = datasources[0];
+    heroes.tableViewCanEditRowBlock = ^(UITableView *tableView, id item, NSIndexPath *indexPath) {
+        return YES;
+    };
+    heroes.tableViewCommitEditingStyleBlock = ^(UITableView *tableView, UITableViewCellEditingStyle editingStyle, id item, NSIndexPath *indexPath) {
+        if (editingStyle == UITableViewCellEditingStyleDelete) {
+            [heroes removeItem:item];
+        }
+    };
 
     self.searchDatasource = [[PTLFilteredDatasource alloc] initWithDatasource:self.datasource filter:nil];
     self.searchDatasource.tableViewHideHeadersForEmptySections = NO;

@@ -21,5 +21,6 @@
 #import "PTLDatasource+TableView.h"
 #import "PTLCompositeDatasource+TableView.h"
 #import "PTLFilteredDatasource+TableView.h"
+#import "PTLTableViewUpdateManager.h"
 
 #endif

@@ -12,12 +12,13 @@
 
 static NSString * const kCellId = @"Cell";
 
-@interface PTLPeopleFilterViewController () <PTLDatasourceObserver, UISearchBarDelegate, UISearchDisplayDelegate>
+@interface PTLPeopleFilterViewController () <UISearchBarDelegate, UISearchDisplayDelegate>
 
 @property (nonatomic, strong) NSArray *compositedDatasources;
 @property (nonatomic, strong) PTLDatasource *datasource;
 @property (nonatomic, strong) UISearchBar *searchBar;
 @property (nonatomic, strong) PTLFilteredDatasource *searchDatasource;
+@property (nonatomic, strong) PTLTableViewUpdateManager *mainTableViewManager;
 
 @end
 
@@ -56,8 +57,8 @@ static NSString * const kCellId = @"Cell";
         cell.textLabel.text = item;
     };
     self.datasource = composite;
-    [self.datasource addChangeObserver:self];
     self.tableView.dataSource = composite;
+    self.mainTableViewManager = [[PTLTableViewUpdateManager alloc] initWithTableView:self.tableView];
 
     self.searchDatasource = [[PTLFilteredDatasource alloc] initWithDatasource:self.datasource filter:nil];
     self.searchDatasource.tableViewHideHeadersForEmptySections = NO;
@@ -94,69 +95,6 @@ static NSString * const kCellId = @"Cell";
 - (void)searchDisplayController:(UISearchDisplayController *)controller didLoadSearchResultsTableView:(UITableView *)tableView {
     [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:kCellId];
     tableView.dataSource = self.searchDatasource;
-}
-
-#pragma mark - PTLDatasourceObserver
-
-- (UITableView *)tableViewForDatasource:(id<PTLDatasource>)datasource {
-    if (datasource == self.datasource) {
-        return self.tableView;
-    } else if (datasource == self.searchDatasource) {
-        return self.searchDisplayController.searchResultsTableView;
-    }
-    return nil;
-}
-
-- (void)datasourceWillChange:(id<PTLDatasource>)datasource {
-    [[self tableViewForDatasource:datasource] beginUpdates];
-}
-
-- (void)datasourceDidChange:(id<PTLDatasource>)datasource {
-    [[self tableViewForDatasource:datasource] endUpdates];
-}
-
-- (void)datasource:(id<PTLDatasource>)datasource didChange:(PTLChangeType)change atIndexPath:(NSIndexPath *)indexPath newIndexPath:(NSIndexPath *)newIndexPath {
-    UITableView *tableView = [self tableViewForDatasource:datasource];
-    switch(change) {
-        case PTLChangeTypeInsert:
-            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
-                                  withRowAnimation:UITableViewRowAnimationAutomatic];
-            break;
-
-        case PTLChangeTypeRemove:
-            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
-                                  withRowAnimation:UITableViewRowAnimationAutomatic];
-            break;
-
-        case PTLChangeTypeUpdate:
-            // As suggested by oleb: http://oleb.net/blog/2013/02/nsfetchedresultscontroller-documentation-bug/
-            [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-            break;
-
-        case PTLChangeTypeMove:
-            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
-                                  withRowAnimation:UITableViewRowAnimationAutomatic];
-            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
-                                  withRowAnimation:UITableViewRowAnimationAutomatic];
-            break;
-    }
-}
-
-- (void)datasource:(id<PTLDatasource>)datasource didChange:(PTLChangeType)change atSectionIndex:(NSInteger)sectionIndex {
-    UITableView *tableView = [self tableViewForDatasource:datasource];
-    switch(change) {
-        case PTLChangeTypeInsert:
-            [tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex]
-                          withRowAnimation:UITableViewRowAnimationAutomatic];
-            break;
-
-        case PTLChangeTypeRemove:
-            [tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex]
-                          withRowAnimation:UITableViewRowAnimationAutomatic];
-            break;
-        default:
-            break;
-    }
 }
 
 @end

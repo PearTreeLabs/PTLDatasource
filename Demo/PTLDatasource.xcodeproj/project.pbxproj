@@ -18,6 +18,7 @@
 		17279C64180CA3D400CB17E4 /* PTLDatasource+TableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 17279C61180CA3D400CB17E4 /* PTLDatasource+TableView.m */; };
 		17279C68180CA3E400CB17E4 /* PTLFetchedDatasource.m in Sources */ = {isa = PBXBuildFile; fileRef = 17279C67180CA3E400CB17E4 /* PTLFetchedDatasource.m */; };
 		17279C6C180CA3F700CB17E4 /* PTLFetchedDatasource+TableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 17279C6B180CA3F700CB17E4 /* PTLFetchedDatasource+TableView.m */; };
+		BD569E55198DCADF00A1E195 /* PTLTableViewUpdateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BD569E54198DCADF00A1E195 /* PTLTableViewUpdateManager.m */; };
 		D365D86B18233E5200801E4F /* PTLFilteredDatasource+CollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = D365D86A18233E5200801E4F /* PTLFilteredDatasource+CollectionView.m */; };
 		D365D86E182344A000801E4F /* PTLMutableIndexPathMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = D365D86D182344A000801E4F /* PTLMutableIndexPathMapping.m */; };
 		D368F9331822FEF300712632 /* heroes.json in Resources */ = {isa = PBXBuildFile; fileRef = D368F9301822FEF300712632 /* heroes.json */; };
@@ -27,10 +28,10 @@
 		D368F93A1823058A00712632 /* PTLPeopleFilterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D368F9391823058A00712632 /* PTLPeopleFilterViewController.xib */; };
 		D368F93E18230A7500712632 /* PTLFilteredDatasource+TableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D368F93D18230A7500712632 /* PTLFilteredDatasource+TableView.m */; };
 		D36D91071822A05900A05D23 /* NSMutableIndexSet+PTLDatasource.m in Sources */ = {isa = PBXBuildFile; fileRef = D36D91061822A05900A05D23 /* NSMutableIndexSet+PTLDatasource.m */; };
-		D38E0B9A1868A122007A01B2 /* UITableView+PTLDatasource.m in Sources */ = {isa = PBXBuildFile; fileRef = D38E0B991868A122007A01B2 /* UITableView+PTLDatasource.m */; };
-		D38E0B9D1868A2F9007A01B2 /* UICollectionView+PTLDatasource.m in Sources */ = {isa = PBXBuildFile; fileRef = D38E0B9C1868A2F9007A01B2 /* UICollectionView+PTLDatasource.m */; };
 		D36D910C1822B27000A05D23 /* PTLIndexPathMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = D36D91091822B27000A05D23 /* PTLIndexPathMapping.m */; };
 		D36D910D1822B27000A05D23 /* PTLIndexPathMappingDelta.m in Sources */ = {isa = PBXBuildFile; fileRef = D36D910B1822B27000A05D23 /* PTLIndexPathMappingDelta.m */; };
+		D38E0B9A1868A122007A01B2 /* UITableView+PTLDatasource.m in Sources */ = {isa = PBXBuildFile; fileRef = D38E0B991868A122007A01B2 /* UITableView+PTLDatasource.m */; };
+		D38E0B9D1868A2F9007A01B2 /* UICollectionView+PTLDatasource.m in Sources */ = {isa = PBXBuildFile; fileRef = D38E0B9C1868A2F9007A01B2 /* UICollectionView+PTLDatasource.m */; };
 		D3B5A1D617AB67BA00E7B7E6 /* PTLIndexDatasourceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B5A1D517AB67BA00E7B7E6 /* PTLIndexDatasourceTests.m */; };
 		D3E44AF21868B17B00637440 /* NSArray+PTLDatasource.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E44AF11868B17B00637440 /* NSArray+PTLDatasource.m */; };
 		D3EA3FD41797823500A50247 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3EA3FD31797823500A50247 /* UIKit.framework */; };
@@ -96,6 +97,8 @@
 		17279C69180CA3EE00CB17E4 /* UIKit+PTLDatasourceFetching.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIKit+PTLDatasourceFetching.h"; sourceTree = "<group>"; };
 		17279C6A180CA3F700CB17E4 /* PTLFetchedDatasource+TableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PTLFetchedDatasource+TableView.h"; sourceTree = "<group>"; };
 		17279C6B180CA3F700CB17E4 /* PTLFetchedDatasource+TableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PTLFetchedDatasource+TableView.m"; sourceTree = "<group>"; };
+		BD569E53198DCADF00A1E195 /* PTLTableViewUpdateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTLTableViewUpdateManager.h; sourceTree = "<group>"; };
+		BD569E54198DCADF00A1E195 /* PTLTableViewUpdateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTLTableViewUpdateManager.m; sourceTree = "<group>"; };
 		D365D86918233E5200801E4F /* PTLFilteredDatasource+CollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PTLFilteredDatasource+CollectionView.h"; sourceTree = "<group>"; };
 		D365D86A18233E5200801E4F /* PTLFilteredDatasource+CollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PTLFilteredDatasource+CollectionView.m"; sourceTree = "<group>"; };
 		D365D86C182344A000801E4F /* PTLMutableIndexPathMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTLMutableIndexPathMapping.h; sourceTree = "<group>"; };
@@ -110,14 +113,14 @@
 		D368F93D18230A7500712632 /* PTLFilteredDatasource+TableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PTLFilteredDatasource+TableView.m"; sourceTree = "<group>"; };
 		D36D91051822A05900A05D23 /* NSMutableIndexSet+PTLDatasource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableIndexSet+PTLDatasource.h"; sourceTree = "<group>"; };
 		D36D91061822A05900A05D23 /* NSMutableIndexSet+PTLDatasource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableIndexSet+PTLDatasource.m"; sourceTree = "<group>"; };
-		D38E0B981868A122007A01B2 /* UITableView+PTLDatasource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+PTLDatasource.h"; sourceTree = "<group>"; };
-		D38E0B991868A122007A01B2 /* UITableView+PTLDatasource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+PTLDatasource.m"; sourceTree = "<group>"; };
-		D38E0B9B1868A2F9007A01B2 /* UICollectionView+PTLDatasource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+PTLDatasource.h"; sourceTree = "<group>"; };
-		D38E0B9C1868A2F9007A01B2 /* UICollectionView+PTLDatasource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+PTLDatasource.m"; sourceTree = "<group>"; };
 		D36D91081822B27000A05D23 /* PTLIndexPathMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTLIndexPathMapping.h; sourceTree = "<group>"; };
 		D36D91091822B27000A05D23 /* PTLIndexPathMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTLIndexPathMapping.m; sourceTree = "<group>"; };
 		D36D910A1822B27000A05D23 /* PTLIndexPathMappingDelta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTLIndexPathMappingDelta.h; sourceTree = "<group>"; };
 		D36D910B1822B27000A05D23 /* PTLIndexPathMappingDelta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTLIndexPathMappingDelta.m; sourceTree = "<group>"; };
+		D38E0B981868A122007A01B2 /* UITableView+PTLDatasource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+PTLDatasource.h"; sourceTree = "<group>"; };
+		D38E0B991868A122007A01B2 /* UITableView+PTLDatasource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+PTLDatasource.m"; sourceTree = "<group>"; };
+		D38E0B9B1868A2F9007A01B2 /* UICollectionView+PTLDatasource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+PTLDatasource.h"; sourceTree = "<group>"; };
+		D38E0B9C1868A2F9007A01B2 /* UICollectionView+PTLDatasource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+PTLDatasource.m"; sourceTree = "<group>"; };
 		D3B5A1D417AB67BA00E7B7E6 /* PTLIndexDatasourceTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTLIndexDatasourceTests.h; sourceTree = "<group>"; };
 		D3B5A1D517AB67BA00E7B7E6 /* PTLIndexDatasourceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTLIndexDatasourceTests.m; sourceTree = "<group>"; };
 		D3E44AF01868B17B00637440 /* NSArray+PTLDatasource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+PTLDatasource.h"; sourceTree = "<group>"; };
@@ -209,6 +212,8 @@
 				D38E0B991868A122007A01B2 /* UITableView+PTLDatasource.m */,
 				D368F93C18230A7500712632 /* PTLFilteredDatasource+TableView.h */,
 				D368F93D18230A7500712632 /* PTLFilteredDatasource+TableView.m */,
+				BD569E53198DCADF00A1E195 /* PTLTableViewUpdateManager.h */,
+				BD569E54198DCADF00A1E195 /* PTLTableViewUpdateManager.m */,
 			);
 			name = TableView;
 			sourceTree = "<group>";
@@ -579,6 +584,7 @@
 				D36D91071822A05900A05D23 /* NSMutableIndexSet+PTLDatasource.m in Sources */,
 				D3EA3FE21797823500A50247 /* main.m in Sources */,
 				D3FF85D21821F452009DE4CF /* NSIndexSet+PTLDatasource.m in Sources */,
+				BD569E55198DCADF00A1E195 /* PTLTableViewUpdateManager.m in Sources */,
 				17279C5D180CA3C400CB17E4 /* PTLDatasource+CollectionView.m in Sources */,
 				D3EA3FE61797823500A50247 /* PTLAppDelegate.m in Sources */,
 				D365D86E182344A000801E4F /* PTLMutableIndexPathMapping.m in Sources */,

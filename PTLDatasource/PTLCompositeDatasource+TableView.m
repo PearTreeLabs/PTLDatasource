@@ -43,6 +43,30 @@
    return (result) ?: self.tableViewCellConfigBlock;
 }
 
+- (PTLTableViewCanEditRowBlock)tableViewCanEditRowBlockForIndexPath:(NSIndexPath *)indexPath {
+   PTLTableViewCanEditRowBlock result = nil;
+   id<PTLDatasource> datasource = [self descendantDatasourceContainingSectionIndex:indexPath.section];
+   if ([datasource conformsToProtocol:@protocol(PTLTableViewDatasource)] &&
+       [datasource respondsToSelector:@selector(tableViewCanEditRowBlockForIndexPath:)]) {
+      id<PTLTableViewDatasource> tableViewDatasource = (id<PTLTableViewDatasource>)datasource;
+      NSIndexPath *resolvedIndexPath = [self resolvedChildDatasourceIndexPathForIndexPath:indexPath];
+      result = [tableViewDatasource tableViewCanEditRowBlockForIndexPath:resolvedIndexPath];
+   }
+   return (result) ?: self.tableViewCanEditRowBlock;
+}
+
+- (PTLTableViewCommitEditingStyleBlock)tableViewCommitEditingStyleBlockForIndexPath:(NSIndexPath *)indexPath {
+   PTLTableViewCommitEditingStyleBlock result = nil;
+   id<PTLDatasource> datasource = [self descendantDatasourceContainingSectionIndex:indexPath.section];
+   if ([datasource conformsToProtocol:@protocol(PTLTableViewDatasource)] &&
+       [datasource respondsToSelector:@selector(tableViewCommitEditingStyleBlockForIndexPath:)]) {
+      id<PTLTableViewDatasource> tableViewDatasource = (id<PTLTableViewDatasource>)datasource;
+      NSIndexPath *resolvedIndexPath = [self resolvedChildDatasourceIndexPathForIndexPath:indexPath];
+      result = [tableViewDatasource tableViewCommitEditingStyleBlockForIndexPath:resolvedIndexPath];
+   }
+   return (result) ?: self.tableViewCommitEditingStyleBlock;
+}
+
 - (NSString *)tableViewHeaderTitleForSection:(NSInteger)sectionIndex {
    NSString *result = nil;
    id<PTLDatasource> datasource = [self descendantDatasourceContainingSectionIndex:sectionIndex];

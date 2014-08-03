@@ -15,5 +15,7 @@
 @property (nonatomic, copy) NSString *tableViewFooterTitle;
 @property (nonatomic, copy) NSString *tableViewCellIdentifier;
 @property (nonatomic, copy) PTLTableViewCellConfigBlock tableViewCellConfigBlock;
+@property (nonatomic, copy) PTLTableViewCanEditRowBlock tableViewCanEditRowBlock;
+@property (nonatomic, copy) PTLTableViewCommitEditingStyleBlock tableViewCommitEditingStyleBlock;
 
 @end

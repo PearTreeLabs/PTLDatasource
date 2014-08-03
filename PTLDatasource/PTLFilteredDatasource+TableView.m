@@ -70,6 +70,28 @@ static NSString * const kPTLTableViewHideFootersForEmptySections = @"kPTLTableVi
     return (result) ?: self.tableViewCellConfigBlock;
 }
 
+- (PTLTableViewCanEditRowBlock)tableViewCanEditRowBlockForIndexPath:(NSIndexPath *)indexPath {
+    PTLTableViewCanEditRowBlock result = nil;
+    if ([self.sourceDatasource conformsToProtocol:@protocol(PTLTableViewDatasource)] &&
+        [self.sourceDatasource respondsToSelector:@selector(tableViewCanEditRowBlockForIndexPath:)]) {
+        id<PTLTableViewDatasource> tableViewDatasource = (id<PTLTableViewDatasource>)self.sourceDatasource;
+        NSIndexPath *resolvedIndexPath = [self.mapping datasourceIndexPathForIndexPath:indexPath];
+        result = [tableViewDatasource tableViewCanEditRowBlockForIndexPath:resolvedIndexPath];
+    }
+    return (result) ?: self.tableViewCanEditRowBlock;
+}
+
+- (PTLTableViewCommitEditingStyleBlock)tableViewCommitEditingStyleBlockForIndexPath:(NSIndexPath *)indexPath {
+    PTLTableViewCommitEditingStyleBlock result = nil;
+    if ([self.sourceDatasource conformsToProtocol:@protocol(PTLTableViewDatasource)] &&
+        [self.sourceDatasource respondsToSelector:@selector(tableViewCommitEditingStyleBlockForIndexPath:)]) {
+        id<PTLTableViewDatasource> tableViewDatasource = (id<PTLTableViewDatasource>)self.sourceDatasource;
+        NSIndexPath *resolvedIndexPath = [self.mapping datasourceIndexPathForIndexPath:indexPath];
+        result = [tableViewDatasource tableViewCommitEditingStyleBlockForIndexPath:resolvedIndexPath];
+    }
+    return (result) ?: self.tableViewCommitEditingStyleBlock;
+}
+
 - (NSString *)tableViewHeaderTitleForSection:(NSInteger)sectionIndex {
     NSString *result = nil;
     if ([self.sourceDatasource conformsToProtocol:@protocol(PTLTableViewDatasource)] &&

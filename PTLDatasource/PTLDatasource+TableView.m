@@ -11,6 +11,8 @@
 
 static NSString * const kPTLTableViewDatasourceCellIdentifier = @"kPTLTableViewDatasourceCellIdentifier";
 static NSString * const kPTLTableViewDatasourceCellConfigBlock = @"kPTLTableViewDatasourceCellConfigBlock";
+static NSString * const kPTLTableViewDatasourceCanEditRowBlock = @"kPTLTableViewDatasourceCanEditRowBlock";
+static NSString * const kPTLTableViewDatasourceCommitEditingStyleBlock = @"kPTLTableViewDatasourceCommitEditingStyleBlock";
 static NSString * const kPTLTableViewDatasourceHeaderIdentifier = @"kPTLTableViewDatasourceHeaderIdentifier";
 static NSString * const kPTLTableViewDatasourceFooterIdentifier = @"kPTLTableViewDatasourceFooterIdentifier";
 
@@ -32,6 +34,22 @@ static NSString * const kPTLTableViewDatasourceFooterIdentifier = @"kPTLTableVie
 
 - (PTLTableViewCellConfigBlock)tableViewCellConfigBlock {
    return objc_getAssociatedObject(self, (__bridge const void *)(kPTLTableViewDatasourceCellConfigBlock));
+}
+
+- (void)setTableViewCanEditRowBlock:(PTLTableViewCanEditRowBlock)tableViewCanEditRowBlock {
+  objc_setAssociatedObject(self, (__bridge const void *)(kPTLTableViewDatasourceCanEditRowBlock), tableViewCanEditRowBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+
+- (PTLTableViewCanEditRowBlock)tableViewCanEditRowBlock {
+  return objc_getAssociatedObject(self, (__bridge const void *)(kPTLTableViewDatasourceCanEditRowBlock));
+}
+
+- (void)setTableViewCommitEditingStyleBlock:(PTLTableViewCommitEditingStyleBlock)tableViewCommitEditingStyleBlock {
+  objc_setAssociatedObject(self, (__bridge const void *)(kPTLTableViewDatasourceCommitEditingStyleBlock), tableViewCommitEditingStyleBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+
+- (PTLTableViewCommitEditingStyleBlock)tableViewCommitEditingStyleBlock {
+  return objc_getAssociatedObject(self, (__bridge const void *)(kPTLTableViewDatasourceCommitEditingStyleBlock));
 }
 
 - (void)setTableViewHeaderTitle:(NSString *)tableViewHeaderTitle {
@@ -62,6 +80,18 @@ static NSString * const kPTLTableViewDatasourceFooterIdentifier = @"kPTLTableVie
    NSParameterAssert(indexPath.section < [self numberOfSections]);
    NSParameterAssert(indexPath.item < [self numberOfItemsInSection:indexPath.section]);
    return self.tableViewCellConfigBlock;
+}
+
+- (PTLTableViewCanEditRowBlock)tableViewCanEditRowBlockForIndexPath:(NSIndexPath *)indexPath {
+    NSParameterAssert(indexPath.section < [self numberOfSections]);
+    NSParameterAssert(indexPath.item < [self numberOfItemsInSection:indexPath.section]);
+    return self.tableViewCanEditRowBlock;
+}
+
+- (PTLTableViewCommitEditingStyleBlock)tableViewCommitEditingStyleBlockForIndexPath:(NSIndexPath *)indexPath {
+    NSParameterAssert(indexPath.section < [self numberOfSections]);
+    NSParameterAssert(indexPath.item < [self numberOfItemsInSection:indexPath.section]);
+    return self.tableViewCommitEditingStyleBlock;
 }
 
 - (NSString *)tableViewHeaderTitleForSection:(NSInteger)sectionIndex {
@@ -102,6 +132,21 @@ static NSString * const kPTLTableViewDatasourceFooterIdentifier = @"kPTLTableVie
 
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)sectionIndex {
    return [self tableViewFooterTitleForSection:sectionIndex];
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+   if (self.tableViewCanEditRowBlock) {
+      id item = [self itemAtIndexPath:indexPath];
+      return self.tableViewCanEditRowBlock(tableView, item, indexPath);
+   }
+   return NO;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+   if (self.tableViewCommitEditingStyleBlock) {
+      id item = [self itemAtIndexPath:indexPath];
+      self.tableViewCommitEditingStyleBlock(tableView, editingStyle, item, indexPath);
+   }
 }
 
 @end

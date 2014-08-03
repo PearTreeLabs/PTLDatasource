@@ -10,11 +10,15 @@
 #import "PTLDatasource.h"
 
 typedef void(^PTLTableViewCellConfigBlock)(UITableView *tableView, UITableViewCell *cell, id item, NSIndexPath *indexPath);
+typedef BOOL(^PTLTableViewCanEditRowBlock)(UITableView *tableView, id item, NSIndexPath *indexPath);
+typedef void(^PTLTableViewCommitEditingStyleBlock)(UITableView *tableView, UITableViewCellEditingStyle editingStyle, id item, NSIndexPath *indexPath);
 
 @protocol PTLTableViewDatasource <PTLDatasource, UITableViewDataSource>
 
 - (NSString *)tableViewCellIdentifierForIndexPath:(NSIndexPath *)indexPath;
 - (PTLTableViewCellConfigBlock)tableViewCellConfigBlockForIndexPath:(NSIndexPath *)indexPath;
+- (PTLTableViewCanEditRowBlock)tableViewCanEditRowBlockForIndexPath:(NSIndexPath *)indexPath;
+- (PTLTableViewCommitEditingStyleBlock)tableViewCommitEditingStyleBlockForIndexPath:(NSIndexPath *)indexPath;
 
 @optional
 - (NSString *)tableViewHeaderTitleForSection:(NSInteger)sectionIndex;
